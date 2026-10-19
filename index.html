@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gamers Hub — Gaming Store in Nairobi | Games, Consoles & Gear</title>
+  <meta name="description" content="Gamers Hub is a Nairobi gaming store selling PS5 and Xbox games, consoles, controllers, headsets and gaming phones. Pay with M-Pesa, card or cash on delivery.">
+
+  <!-- Social previews (WhatsApp, X, Facebook) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gamers Hub — Gaming Store in Nairobi">
+  <meta property="og:description" content="Games, consoles and gear delivered across Kenya. Pay with M-Pesa.">
+  <meta property="og:image" content="assets/cyber.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HEADER ============================ -->
+<div class="topbar">
+  <div class="topbar__inner">
+    <p>Free Nairobi delivery on orders over KES 5,000</p>
+    <p class="topbar__right">WhatsApp: +254 700 000 000</p>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 11h4M8 9v4M15.5 11h.01M18 13h.01"/>
+          <rect x="2" y="6" width="20" height="12" rx="4"/>
+        </svg>
+      </span>
+      <span class="brand__text">Gamers<span>Hub</span></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Main">
+      <a href="index.html" class="is-active" aria-current="page">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="icon-btn" href="shop.html" aria-label="Search products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+        </svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 4h2l2.6 11h10.2L20 8H6"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/>
+        </svg>
+        <span class="badge" id="cartBadge" hidden>0</span>
+      </a>
+      <button class="icon-btn nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="nav__drawer" id="navDrawer">
+  <div class="nav__drawer-panel">
+    <a href="index.html" class="is-active">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+    <hr>
+    <p class="pcard__brand">Pay securely with</p>
+    <div class="pay-row">
+      <span class="pay-chip">M-PESA</span>
+      <span class="pay-chip">VISA</span>
+      <span class="pay-chip">MASTERCARD</span>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="hero__media">
+      <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="videos/cyberpunk-e3-2018-trailer.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="container hero__content">
+      <span class="hero__eyebrow">Nairobi · Kenya</span>
+      <h1>Level up your <em>game</em>.</h1>
+      <p class="hero__type"><span id="type-text"></span><span class="cursor" aria-hidden="true">|</span></p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="shop.html">Shop the store</a>
+        <a class="btn btn--ghost btn--lg" href="shop.html?category=games">Browse games</a>
+      </div>
+
+      <div class="hero__trust">
+        <span class="chip chip--cyan">M-Pesa accepted</span>
+        <span class="chip">Instant game codes</span>
+        <span class="chip">Cash on delivery</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CATEGORIES ========================= -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Shop by category</p>
+        <h2>Find your next obsession</h2>
+      </div>
+      <div class="cat-grid" id="categoryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================= FEATURED =========================== -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Hand-picked</p>
+        <h2>Featured this week</h2>
+        <p>The titles and hardware our customers keep coming back for.</p>
+      </div>
+      <div class="product-grid" id="featuredGrid"></div>
+      <div class="row" style="margin-top:26px">
+        <a class="btn btn--ghost" href="shop.html">View all products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== PROMO ============================ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="promo-grid">
+        <div class="promo promo--cyan reveal">
+          <p class="eyebrow">Instant delivery</p>
+          <h3>Your code, the moment you pay</h3>
+          <p>Every digital title is delivered automatically after payment — no waiting for shop hours, no back-and-forth on WhatsApp. M-Pesa confirmation triggers delivery instantly.</p>
+          <a class="btn btn--primary btn--sm" href="shop.html?category=games">Shop digital titles</a>
+        </div>
+        <div class="promo promo--violet reveal">
+          <p class="eyebrow">Trade-ins welcome</p>
+          <h3>Upgrade your old gear</h3>
+          <p>Bring in your old console, controller or phone and we will value it against anything in store. We buy, sell and swap — cash or store credit, your call.</p>
+          <a class="btn btn--violet btn--sm" href="contact.html">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== FEATURES ========================== -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/>
+            </svg>
+          </div>
+          <h3>Lightning delivery</h3>
+          <p>Digital codes land in your inbox seconds after payment. Physical orders go out same day within Nairobi.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3>Genuine products</h3>
+          <p>Region-free, officially licensed stock only. Every console and phone carries a 12-month local warranty.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/>
+            </svg>
+          </div>
+          <h3>Pay your way</h3>
+          <p>M-Pesa STK push, Visa and Mastercard, or cash on delivery. Whichever you trust most.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.4 8.4 0 01-.9 3.8A8.5 8.5 0 0112.5 20a8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 014 11.5 8.5 8.5 0 018.7 4.9 8.4 8.4 0 0112.5 4h.5a8.5 8.5 0 018 8v.5z"/>
+            </svg>
+          </div>
+          <h3>Real humans</h3>
+          <p>Message us on WhatsApp before you buy. We answer in minutes and we will talk you out of a bad purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= NEWSLETTER ========================= -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="newsletter reveal">
+        <p class="eyebrow">Drop alerts</p>
+        <h2>Be first when new titles land</h2>
+        <p>Restocks, price drops and launch-day pre-orders. One email a week, no spam, unsubscribe whenever.</p>
+        <form id="newsletterForm" novalidate>
+          <label class="sr-only" for="newsletterEmail">Email address</label>
+          <input id="newsletterEmail" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn--primary" type="submit">Notify me</button>
+        </form>
+        <p class="form-note" id="newsletterNote">We never share your address. Ever.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <span class="brand__mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 11h4M8 9v4M15.5 11h.01M18 13h.01"/><rect x="2" y="6" width="20" height="12" rx="4"/>
+            </svg>
+          </span>
+          <span class="brand__text">Gamers<span>Hub</span></span>
+        </a>
+        <p>A gaming store built by gamers, in Nairobi. Games, consoles and gear — delivered across Kenya.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.9l-4.5-6-5.2 6H2.3l7.3-8.3L1.6 2h7l4.2 5.6L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg></a>
+          <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 16.5S9.8 18 12 18s3.5-1.5 3.5-1.5"/><path d="M15.5 4.5l1.5-1s2.5 3 2.5 7c0 5-3 8.5-7 8.5S5.5 15.5 5.5 10.5c0-4 2.5-7 2.5-7l1.5 1"/><circle cx="9.5" cy="11" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8A8.5 8.5 0 0112.5 20a8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 014 11.5 8.5 8.5 0 018.7 4.9 8.4 8.4 0 0112.5 4h.5a8.5 8.5 0 018 8v.5z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=games">Games</a></li>
+          <li><a href="shop.html?category=consoles">Consoles</a></li>
+          <li><a href="shop.html?category=accessories">Accessories</a></li>
+          <li><a href="shop.html?category=phones">Gaming phones</a></li>
+          <li><a href="shop.html">All products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="contact.html#faq">Delivery &amp; returns</a></li>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Visit us</h4>
+        <ul>
+          <li>Kimathi Street, Nairobi CBD</li>
+          <li>Mon–Sat, 9am – 8pm</li>
+          <li>+254 700 000 000</li>
+          <li>hello@gamershub.co.ke</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span data-year></span> Gamers Hub. All rights reserved.</p>
+      <div class="pay-row">
+        <span class="pay-chip">M-PESA</span>
+        <span class="pay-chip">VISA</span>
+        <span class="pay-chip">MASTERCARD</span>
+        <span class="pay-chip">CASH ON DELIVERY</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

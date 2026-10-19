@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop All Products — Gamers Hub</title>
+  <meta name="description" content="Browse every game, console, controller, headset and gaming phone at Gamers Hub. Filter by platform and price. Pay with M-Pesa, card or cash on delivery.">
+  <meta property="og:title" content="Shop All Products — Gamers Hub">
+  <meta property="og:description" content="Games, consoles and gear delivered across Kenya.">
+  <meta property="og:image" content="assets/cyber.jpeg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="topbar__inner">
+    <p>Free Nairobi delivery on orders over KES 5,000</p>
+    <p class="topbar__right">WhatsApp: +254 700 000 000</p>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 11h4M8 9v4M15.5 11h.01M18 13h.01"/><rect x="2" y="6" width="20" height="12" rx="4"/>
+        </svg>
+      </span>
+      <span class="brand__text">Gamers<span>Hub</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="is-active" aria-current="page">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="icon-btn" href="shop.html" aria-label="Search products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.6 11h10.2L20 8H6"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>
+        <span class="badge" id="cartBadge" hidden>0</span>
+      </a>
+      <button class="icon-btn nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav__drawer" id="navDrawer">
+  <div class="nav__drawer-panel">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="is-active">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+    <hr>
+    <p class="pcard__brand">Pay securely with</p>
+    <div class="pay-row">
+      <span class="pay-chip">M-PESA</span>
+      <span class="pay-chip">VISA</span>
+      <span class="pay-chip">MASTERCARD</span>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span id="crumbCategory">All products</span>
+      </nav>
+      <h1 id="shopTitle">All products</h1>
+      <p id="shopBlurb">Everything in stock right now. Filter down to what you actually need.</p>
+    </div>
+  </div>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="shop-layout">
+
+        <!-- ------------------------- FILTERS ------------------------- -->
+        <aside class="filters" id="filters">
+          <div class="filters__head" id="filtersHead">
+            <h3>Filters</h3>
+            <svg class="filters__toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+
+          <div class="filters__body">
+            <div class="filter-group">
+              <h4>Search</h4>
+              <div class="field" style="margin:0">
+                <label class="sr-only" for="searchInput">Search products</label>
+                <input id="searchInput" type="search" placeholder="Title, brand or platform…" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <h4>Category</h4>
+              <div id="categoryFilters"></div>
+            </div>
+
+            <div class="filter-group">
+              <h4>Platform</h4>
+              <div id="platformFilters"></div>
+            </div>
+
+            <div class="filter-group">
+              <h4>Max price (KES)</h4>
+              <div class="price-inputs">
+                <input id="minPrice" type="number" min="0" placeholder="Min" inputmode="numeric">
+                <span>–</span>
+                <input id="maxPrice" type="number" min="0" placeholder="Max" inputmode="numeric">
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <h4>Availability</h4>
+              <label class="check">
+                <input type="checkbox" id="inStockOnly">
+                <span>In stock only</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" id="dealsOnly">
+                <span>On sale</span>
+              </label>
+            </div>
+
+            <div class="filter-group">
+              <button class="btn btn--ghost btn--block btn--sm" id="clearFilters" type="button">Clear all filters</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ------------------------- RESULTS ------------------------- -->
+        <div>
+          <div class="toolbar">
+            <p class="toolbar__count" id="resultCount">Loading…</p>
+            <label class="sr-only" for="sortSelect">Sort by</label>
+            <select id="sortSelect">
+              <option value="featured">Featured first</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="rating">Top rated</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </div>
+
+          <div class="active-filters" id="activeFilters"></div>
+          <div class="product-grid" id="shopGrid"></div>
+
+          <div class="empty" id="emptyState" hidden>
+            <h3>Nothing matches those filters</h3>
+            <p>Try widening your price range or clearing a filter or two.</p>
+            <button class="btn btn--primary btn--sm" type="button" id="emptyClear">Clear filters</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <span class="brand__mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h4M8 9v4M15.5 11h.01M18 13h.01"/><rect x="2" y="6" width="20" height="12" rx="4"/></svg>
+          </span>
+          <span class="brand__text">Gamers<span>Hub</span></span>
+        </a>
+        <p>A gaming store built by gamers, in Nairobi. Games, consoles and gear — delivered across Kenya.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.9l-4.5-6-5.2 6H2.3l7.3-8.3L1.6 2h7l4.2 5.6L18.9 2zm-1.2 18h1.9L7.4 3.9H5.4L17.7 20z"/></svg></a>
+          <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 16.5S9.8 18 12 18s3.5-1.5 3.5-1.5"/><path d="M15.5 4.5l1.5-1s2.5 3 2.5 7c0 5-3 8.5-7 8.5S5.5 15.5 5.5 10.5c0-4 2.5-7 2.5-7l1.5 1"/><circle cx="9.5" cy="11" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8A8.5 8.5 0 0112.5 20a8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 014 11.5 8.5 8.5 0 018.7 4.9 8.4 8.4 0 0112.5 4h.5a8.5 8.5 0 018 8v.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=games">Games</a></li>
+          <li><a href="shop.html?category=consoles">Consoles</a></li>
+          <li><a href="shop.html?category=accessories">Accessories</a></li>
+          <li><a href="shop.html?category=phones">Gaming phones</a></li>
+          <li><a href="shop.html">All products</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="contact.html#faq">Delivery &amp; returns</a></li>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Visit us</h4>
+        <ul>
+          <li>Kimathi Street, Nairobi CBD</li>
+          <li>Mon–Sat, 9am – 8pm</li>
+          <li>+254 700 000 000</li>
+          <li>hello@gamershub.co.ke</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© <span data-year></span> Gamers Hub. All rights reserved.</p>
+      <div class="pay-row">
+        <span class="pay-chip">M-PESA</span>
+        <span class="pay-chip">VISA</span>
+        <span class="pay-chip">MASTERCARD</span>
+        <span class="pay-chip">CASH ON DELIVERY</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>
