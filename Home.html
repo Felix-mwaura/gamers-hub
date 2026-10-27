@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamers Hub Store</title>
+    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="home.css">
+</head>
 
 <body>
 <h1 class="h1" id="type-header"></h1>
@@ -25,6 +31,77 @@
 
 
 </div>
+
+<!--Featured products carousel (Swiper)-->
+<section class="carousel-section">
+  <h2 class="section-title">Featured Gear</h2>
+
+  <div class="swiper" id="featured-swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide">
+        <div class="card">
+          <img src="assets/cyber.jpeg" alt="Cyberpunk 2077">
+          <div class="card-body">
+            <div class="card-title">Cyberpunk 2077</div>
+            <div class="card-text">Night City waits for no one. Grab the full game and start your ascent.</div>
+            <button type="button">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card">
+          <img src="assets/cyberpunk.jpeg" alt="Cyberpunk edition">
+          <div class="card-body">
+            <div class="card-title">Cyberpunk Collector's Edition</div>
+            <div class="card-text">Steelbook, art book and soundtrack bundled with the base game.</div>
+            <button type="button">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card">
+          <img src="assets/gta 5.jpeg" alt="GTA 5">
+          <div class="card-body">
+            <div class="card-title">GTA V</div>
+            <div class="card-text">Three protagonists, one sprawling city, endless chaos.</div>
+            <button type="button">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card">
+          <img src="assets/legion tablet.jpeg" alt="Legion gaming tablet">
+          <div class="card-body">
+            <div class="card-title">Legion Gaming Tablet</div>
+            <div class="card-text">Console-class handheld with a high refresh rate display.</div>
+            <button type="button">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card">
+          <img src="assets/iphone.jpeg" alt="iPhone">
+          <div class="card-body">
+            <div class="card-title">iPhone</div>
+            <div class="card-text">Mobile gaming that keeps up with your library.</div>
+            <button type="button">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
 <div class="card">
     <img src="assets/cyber.jpeg" alt="Card Image">
     <div class="card-body">
@@ -33,43 +110,6 @@
     </div>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="home.js"></script>
+<script src="home.js" type="module"></script>
 </body>
 </html>

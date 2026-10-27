@@ -1,0 +1,9 @@
+{
+  // VS Code will offer to install these when the folder is opened.
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vsliveshare.vsliveshare",
+    "ritwickdey.liveserver"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "gamers-hub",
+  "version": "1.0.0",
+  "description": "Gamers Hub Store - static storefront site",
+  "scripts": {
+    "start": "python3 -m http.server 3000 --bind 0.0.0.0",
+    "dev": "python3 -m http.server 3000 --bind 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felix-mwaura/gamers-hub.git"
+  },
+  "keywords": [
+    "games",
+    "storefront",
+    "static-site"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Felix-mwaura/gamers-hub/issues"
+  },
+  "homepage": "https://github.com/Felix-mwaura/gamers-hub#readme",
+  "private": true,
+  "dependencies": {
+    "swiper": "^14.3.0"
+  }
+}

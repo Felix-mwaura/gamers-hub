@@ -19,8 +19,44 @@ text-shadow: 2px 2px 5px red;
     font-size: 30px;
 }
 
-.carousel{
-    display: flex;
+.carousel-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.section-title {
+  text-align: center;
+  color: #00ffc3;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Swiper needs the slide to size to its content */
+.swiper-slide {
+  height: auto;
+}
+
+.swiper-slide .card {
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* Match the nav/pagination controls to the site palette */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #00ffc3;
+}
+
+.swiper-pagination-bullet {
+  background: #ffffff;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  background: #00ffc3;
+  opacity: 1;
 }
 
 .card {
