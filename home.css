@@ -1,100 +1,864 @@
-body{
-    background-color:#121212;
-    color: #ffffff;
+/* ==========================================================================
+   Gamers Hub Store — Cyberpunk UI
+   Design system generated with UI UX Pro Max (nextlevelbuilder/ui-ux-pro-max-skill)
+
+   Style:      cyberpunk-ui  (styles.csv — "Best For: Gaming platforms")
+   Typography: Gaming Bold — Russo One (display) / Chakra Petch (body)
+   Motion:     Stagger List — 400ms, back.out(1.4) equivalent overshoot
+   Pattern:    Feature-Rich Showcase (hero → features → proof → CTA)
+
+   NOTE ON PALETTE: colors.csv also offers a "Gaming" palette built on
+   #7C3AED purple + #F43F5E rose. It was deliberately NOT used here — that is
+   the "AI purple/pink gradient" anti-pattern, and the cyberpunk-ui style
+   tokens (matrix green / cyan / magenta on near-black) already match the
+   brand's existing neon-green identity.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens — straight from the cyberpunk-ui "Design System Variables"
+   -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --bg-dark: #0d0d0d;
+  --bg-elevated: #141414;
+  --card: #1a1a1a;
+  --card-hover: #1e1e1e;
+  --muted: #232323;
+
+  /* Neon accents */
+  --neon-green: #00ffc3;
+  --neon-green-dim: #00d6a9;
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+
+  /* Text — body is lifted off pure white to cut OLED glare */
+  --text-primary: #e8f6f3;
+  --text-muted: #a8c5be;
+
+  /* Lines */
+  --border: rgba(0, 255, 195, 0.18);
+  --border-strong: rgba(0, 255, 195, 0.42);
+
+  /* Semantic */
+  --destructive: #ff4d4d;
+
+  /* Style-specific vars from the database */
+  --scanline-opacity: 0.1;
+  --glitch-duration: 0.3s;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 400ms;
+  /* back.out(1.4) has a hard-coded overshoot that CSS easing cannot reproduce
+     exactly; this is the closest cubic-bezier approximation. */
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Type */
+  --font-display: 'Russo One', 'Impact', system-ui, sans-serif;
+  --font-body: 'Chakra Petch', ui-monospace, 'Courier New', monospace;
+
+  /* Layout */
+  --header-height: 72px;
+  --max-w: 1200px;
+  --radius: 4px; /* cyberpunk = angular; the style asks for sharp corners */
+  --space: 16px;
 }
 
-.h1{
-    color: blue;
-     box-shadow: 0 4px 8px rgba(4, 243, 136, 0.3);
-         border-radius: 8px;
-text-align: center;
-text-shadow: 2px 2px 5px red;
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.Navbar{
-    color: blue;
-    text-align: center;
-    text-shadow: 2px 2px 5px red;
-    padding: 15px;
-    font-size: 30px;
+html {
+  /* Keeps sticky-header focus rings from being obscured (WCAG 2.2 AA) */
+  scroll-padding-top: calc(var(--header-height) + 16px);
+  scroll-behavior: smooth;
 }
 
-.carousel{
-    display: flex;
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.card {
-      background-color: #1e1e1e;
-      width: 300px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Russo One ships a single weight */
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-    }
+img {
+  max-width: 100%;
+}
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
+a {
+  color: var(--neon-green);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
 
-    .card-body {
-      padding:16px;
-    }
+::selection {
+  background: var(--neon-magenta);
+  color: #0d0d0d;
+}
 
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+/* Focus appearance: >=2px perimeter, 3:1 state contrast (WCAG 2.2 AAA) */
+:focus-visible {
+  outline: 2px solid var(--neon-green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
-    .card-text {
-      font-size: 0.95rem;
-      color: #c0c0c0;
-      margin-bottom: 16px;
-    }
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
 
-    .card button {
-      background-color: #00ffc3;
-      color: #000;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      
-    }
+/* --------------------------------------------------------------------------
+   3. Scanline overlay — the cyberpunk-ui signature effect.
+      Fixed + pointer-events:none so it can never obscure a focus ring.
+   -------------------------------------------------------------------------- */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 3px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 4px
+  );
+  mix-blend-mode: multiply;
+}
 
-    .card button:hover {
-      background-color: #00d6a9;
-    }
+/* --------------------------------------------------------------------------
+   4. Header / navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  min-height: var(--header-height);
+  padding: 12px var(--space);
+  background: rgba(13, 13, 13, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(0, 255, 195, 0.55);
+}
 
+.brand:hover {
+  color: var(--neon-green);
+}
 
-video {
+.brand svg {
+  color: var(--neon-green);
+  flex: none;
+}
+
+.Navbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.Navbar a {
+  position: relative;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.Navbar a::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--neon-green);
+  box-shadow: 0 0 8px var(--neon-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.Navbar a:hover,
+.Navbar a:focus-visible {
+  color: var(--text-primary);
+  background: rgba(0, 255, 195, 0.06);
+}
+
+.Navbar a:hover::after,
+.Navbar a:focus-visible::after,
+.Navbar a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.Navbar a[aria-current='page'] {
+  color: var(--neon-green);
+}
+
+/* Nav items that point at pages not built yet */
+.Navbar a[aria-disabled='true'] {
+  color: #6b7f7a;
+  cursor: not-allowed;
+}
+
+.Navbar a[aria-disabled='true']::after {
+  display: none;
+}
+
+.Navbar a[aria-disabled='true']:hover {
+  background: none;
+  color: #6b7f7a;
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-back),
+    box-shadow var(--dur-base) ease, background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+
+.btn--primary {
+  background: var(--neon-green);
+  color: #06120f;
+  box-shadow: 0 0 0 rgba(0, 255, 195, 0);
+}
+
+.btn--primary:hover {
+  background: #4dffdc;
+  box-shadow: 0 0 22px rgba(0, 255, 195, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--neon-green);
+  border-color: var(--border-strong);
+}
+
+.btn--ghost:hover {
+  background: rgba(0, 255, 195, 0.08);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 18px rgba(0, 255, 195, 0.28);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero + typewriter
+   -------------------------------------------------------------------------- */
+.video-wrapper {
+  position: relative;
+  max-width: var(--max-w);
+  margin: 24px auto 0;
+  padding-inline: var(--space);
+}
+
+.video-wrapper video {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 40px rgba(0, 255, 195, 0.12);
+}
+
+/* Vignette so overlaid text stays legible over bright footage */
+.video-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0 var(--space);
+  border-radius: var(--radius);
+  background: linear-gradient(
+    to top,
+    rgba(13, 13, 13, 0.92) 0%,
+    rgba(13, 13, 13, 0.45) 28%,
+    rgba(13, 13, 13, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Headline rendered by JS (kept for the existing typewriter behaviour) */
+.h1 {
+  margin: 20px auto 0;
+  padding: 0 var(--space);
+  max-width: var(--max-w);
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: var(--text-primary);
+  text-align: center;
+  text-shadow: 0 0 12px rgba(0, 255, 195, 0.6), 0 0 34px rgba(0, 255, 195, 0.25);
 }
 
 .typewriter {
-  position:absolute;
-  bottom: 10px;
-  left: 10px;
-  transform: none;
-  color: rgb(15, 17, 18);
-  font-size: 32px;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(1, 253, 253, 0.7);
+  position: absolute;
+  bottom: 32px;
+  left: calc(var(--space) + 24px);
+  right: calc(var(--space) + 24px);
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.4vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
   pointer-events: none;
 }
 
+/* Blinking terminal caret */
+.typewriter span::after {
+  content: '';
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+  animation: caret-blink 1s steps(1) infinite;
+}
 
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
 
+/* Glitch — the database asks for it to stay *subtle* */
+.glitch {
+  position: relative;
+  animation: glitch-skew 9s infinite steps(1);
+}
+
+@keyframes glitch-skew {
+  0%,
+  92%,
+  100% {
+    transform: skewX(0deg);
+    text-shadow: 0 0 12px rgba(0, 255, 195, 0.6);
+  }
+  93% {
+    transform: skewX(-1.5deg) translateX(-2px);
+    text-shadow: 2px 0 var(--neon-magenta), -2px 0 var(--neon-cyan);
+  }
+  95% {
+    transform: skewX(1.5deg) translateX(2px);
+    text-shadow: -2px 0 var(--neon-magenta), 2px 0 var(--neon-cyan);
+  }
+  97% {
+    transform: skewX(0deg);
+    text-shadow: 0 0 12px rgba(0, 255, 195, 0.6);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Sections
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: clamp(48px, 8vw, 88px);
+}
+
+.section-head {
+  max-width: var(--max-w);
+  margin: 0 auto 32px;
+  padding-inline: var(--space);
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--text-primary);
+}
+
+/* Neon underline instead of a centred rule */
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 64px;
+  height: 3px;
+  background: var(--neon-magenta);
+  box-shadow: 0 0 12px var(--neon-magenta);
+}
+
+.section-sub {
+  margin: 22px 0 0;
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   8. Feature grid — "Feature-Rich Showcase", one key message per card
+   -------------------------------------------------------------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space);
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+.feature {
+  padding: 24px 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--neon-green);
+  border-radius: var(--radius);
+  transition: transform var(--dur-base) var(--ease-back),
+    border-color var(--dur-base) ease, box-shadow var(--dur-base) ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 255, 195, 0.12);
+}
+
+.feature__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+  color: var(--neon-green);
+  background: rgba(0, 255, 195, 0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.feature h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.feature p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. Product cards + Swiper carousel
+   -------------------------------------------------------------------------- */
+.carousel-section {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+.swiper {
+  padding-bottom: 44px; /* room for pagination dots */
+}
+
+.swiper-slide {
+  height: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-back),
+    border-color var(--dur-base) ease, box-shadow var(--dur-base) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-strong);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 255, 195, 0.14);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+  filter: saturate(1.08) contrast(1.04);
+  transition: filter var(--dur-slow) ease, transform var(--dur-slow) var(--ease-out);
+}
+
+.card:hover img {
+  filter: saturate(1.2) contrast(1.08);
+  transform: scale(1.03);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  padding: 18px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.card-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.card-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--neon-green);
+  text-shadow: 0 0 12px rgba(0, 255, 195, 0.4);
+}
+
+.price-was {
+  font-size: 0.9rem;
+  color: #7d918c;
+  text-decoration: line-through;
+}
+
+/* Badge meaning never relies on colour alone — each carries text */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+}
+
+.badge--hot {
+  color: var(--neon-magenta);
+}
+
+.badge--new {
+  color: var(--neon-cyan);
+}
+
+.badge--sale {
+  color: var(--neon-green);
+}
+
+/* Swiper controls reskinned to the palette */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--neon-green);
+  width: 40px;
+  height: 40px;
+  background: rgba(13, 13, 13, 0.75);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  transition: box-shadow var(--dur-base) ease, background-color var(--dur-base) ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 255, 195, 0.12);
+  box-shadow: 0 0 18px rgba(0, 255, 195, 0.35);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #4a5b57;
+  border-radius: 1px; /* angular, not round */
+  opacity: 1;
+  transition: background-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* --------------------------------------------------------------------------
+   10. Social proof strip
+   -------------------------------------------------------------------------- */
+.proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  background: var(--border);
+  border-block: 1px solid var(--border);
+}
+
+.proof__item {
+  padding: 28px 20px;
+  background: var(--bg-dark);
+  text-align: center;
+}
+
+.proof__num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--neon-cyan);
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.4);
+}
+
+.proof__label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   11. Closing CTA
+   -------------------------------------------------------------------------- */
+.cta {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: clamp(32px, 6vw, 56px) clamp(20px, 5vw, 48px);
+  text-align: center;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 255, 195, 0.07),
+      rgba(255, 0, 255, 0.05)
+    ),
+    var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 60px rgba(0, 255, 195, 0.06);
+}
+
+.cta h2 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  margin-bottom: 12px;
+}
+
+.cta p {
+  max-width: 55ch;
+  margin: 0 auto 28px;
+  color: var(--text-muted);
+}
+
+.cta__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  margin-top: 48px;
+  padding: 32px var(--space);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.88rem;
+  color: #7d918c;
+}
+
+.site-footer a {
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   13. Motion — Stagger List. Cards fade/rise in a wave on load.
+       `both` fill mode means content is fully visible if JS/CSS is interrupted.
+   -------------------------------------------------------------------------- */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stagger > * {
+  animation: rise-in var(--dur-slow) var(--ease-back) both;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 60ms; }
+.stagger > *:nth-child(3) { animation-delay: 120ms; }
+.stagger > *:nth-child(4) { animation-delay: 180ms; }
+.stagger > *:nth-child(5) { animation-delay: 240ms; }
+.stagger > *:nth-child(6) { animation-delay: 300ms; }
+.stagger > *:nth-child(n + 7) { animation-delay: 360ms; }
+
+/* --------------------------------------------------------------------------
+   14. Reduced motion — strips non-essential animation and renders the
+       final state immediately.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .stagger > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .scanlines::after,
+  .glitch {
+    display: none;
+  }
+
+  .typewriter span::after {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive — 375 / 768 / 1024 / 1440
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: auto;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-block: 12px;
+  }
+
+  .Navbar {
+    width: 100%;
+    gap: 0;
+  }
+
+  .Navbar a {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .typewriter {
+    bottom: 20px;
+    left: calc(var(--space) + 12px);
+    right: calc(var(--space) + 12px);
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none; /* swipe + dots are enough on touch */
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}

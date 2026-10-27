@@ -1,0 +1,18 @@
+# Dependencies — install with `npm install`
+node_modules/
+
+# The hero trailer is ~6 MB of binary media; keep it out of Git
+# and store it in Git LFS or an object store instead.
+videos/*.mp4
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+*.log
+
+# Build output (if a build step is added later)
+dist/
+build/

@@ -1,75 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gamers Hub Store — game keys, collectibles and gaming hardware. Instant delivery, verified sellers.">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Gamers Hub Store</title>
+
+    <!-- Typography: "Gaming Bold" pairing (Russo One / Chakra Petch).
+         Self-hosted via @fontsource so there is no third-party request and the
+         design does not depend on an external CDN. Only the latin subset and
+         the weights actually used are linked. -->
+    <link rel="stylesheet" href="node_modules/@fontsource/russo-one/latin-400.css">
+    <link rel="stylesheet" href="node_modules/@fontsource/chakra-petch/latin-400.css">
+    <link rel="stylesheet" href="node_modules/@fontsource/chakra-petch/latin-600.css">
+    <link rel="stylesheet" href="node_modules/@fontsource/chakra-petch/latin-700.css">
+
+    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="home.css">
+</head>
 
-<body>
-<h1 class="h1" id="type-header"></h1>
+<!-- `scanlines` adds the fixed CRT overlay from the cyberpunk-ui style spec -->
+<body class="scanlines">
 
-<!--Navigation Bar-->
-<div class="Navbar">
-<a>Home</a>
-<a>Shop</a>
-<a>About</a>
-<a>Contact</a>
-</div>
+<header class="site-header">
+  <a class="brand" href="Home.html">
+    <!-- Inline SVG, not an emoji icon -->
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M6.5 7h11a4.5 4.5 0 0 1 4.45 3.86l.7 4.9A2.8 2.8 0 0 1 19.9 19a2.9 2.9 0 0 1-2.2-1l-1.5-1.9a2 2 0 0 0-1.57-.75H9.37a2 2 0 0 0-1.57.75L6.23 18a2.9 2.9 0 0 1-2.2 1 2.8 2.8 0 0 1-2.75-3.24l.7-4.9A4.5 4.5 0 0 1 6.5 7Z"/>
+      <path d="M8 10.5v3M6.5 12h3M16 11h.01M18.5 13.5h.01"/>
+    </svg>
+    Gamers Hub
+  </a>
 
-<!--Carousel-->
+  <!--Navigation Bar-->
+  <nav class="Navbar" aria-label="Main">
+    <a href="Home.html" aria-current="page">Home</a>
+    <a href="#featured">Shop</a>
+    <a href="#why-us">About</a>
+    <a href="#get-started">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- aria-label exposes the full headline immediately: the typed text is a
+     visual effect, and an empty h1 would leave AT and crawlers with no
+     page heading for the ~6s the animation runs. -->
+<h1 class="h1 glitch" id="type-header" aria-label="Welcome to Gamers Hub Store"></h1>
+
+<!--Hero / Carousel-->
 <div class="video-wrapper">
-     
-<video  autoplay muted loop>
-    <source src="videos/Cyberpunk 2077 — Official E3 2018 Trailer.mp4">
-</video>
-<div class="typewriter">
-<span id="type-text"></span>
+  <video autoplay muted loop playsinline>
+    <source src="videos/Cyberpunk 2077 — Official E3 2018 Trailer.mp4" type="video/mp4">
+    Your browser does not support embedded video.
+  </video>
+  <!-- Decorative, and a duplicate of the trailer's own copy — hidden from AT.
+       The <video> has no audio track, so no caption track is required. -->
+  <div class="typewriter" aria-hidden="true">
+    <span id="type-text"></span>
+  </div>
 </div>
 
-
-</div>
-<div class="card">
-    <img src="assets/cyber.jpeg" alt="Card Image">
-    <div class="card-body">
-      <div class="card-title">Card Title</div>
-      <div class="card-text">This is a sample description for the card. You can customize it.</div>
-    </div>
+<!--Feature grid — "Feature-Rich Showcase", one key message per card-->
+<section class="section" id="why-us">
+  <div class="section-head">
+    <h2 class="section-title">Why Gamers Hub</h2>
+    <p class="section-sub">Keys, hardware and collectibles from verified sellers — priced for people who actually play.</p>
   </div>
 
+  <div class="feature-grid stagger">
+    <div class="feature">
+      <span class="feature__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <path d="M13 2 4.5 13.5H11L9.5 22 19 10.5h-6.5L13 2Z"/>
+        </svg>
+      </span>
+      <h3>Instant Delivery</h3>
+      <p>Keys land in your inbox the moment payment clears. No waiting on a seller to wake up.</p>
+    </div>
 
+    <div class="feature">
+      <span class="feature__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <path d="M12 2.5 4 6v6c0 4.6 3.3 8.6 8 9.5 4.7-.9 8-4.9 8-9.5V6l-8-3.5Z"/>
+          <path d="m8.8 12.2 2.2 2.2 4.2-4.4"/>
+        </svg>
+      </span>
+      <h3>Verified Sellers</h3>
+      <p>Every listing is checked before it goes live, so a too-good price stays a good price.</p>
+    </div>
 
+    <div class="feature">
+      <span class="feature__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <circle cx="9" cy="20" r="1.6"/>
+          <circle cx="18" cy="20" r="1.6"/>
+          <path d="M2.5 3.5h2.6l2.2 11.2h10.4l2.3-8.2H6.4"/>
+        </svg>
+      </span>
+      <h3>Buyer Protection</h3>
+      <p>If a code doesn't redeem, we replace it or refund it. Full stop.</p>
+    </div>
 
+    <div class="feature">
+      <span class="feature__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <path d="M3 16.5V8.2a1.7 1.7 0 0 1 1.2-1.6l10.3-3a1.2 1.2 0 0 1 1.5 1.2V16"/>
+          <path d="M3 16.5h12M16.5 10H19a2 2 0 0 1 2 2v3a1.5 1.5 0 0 1-1.5 1.5"/>
+          <circle cx="6.5" cy="18.5" r="2"/>
+          <circle cx="17" cy="18.5" r="2"/>
+        </svg>
+      </span>
+      <h3>Ships Worldwide</h3>
+      <p>Hardware and collectibles dispatched from three regional warehouses.</p>
+    </div>
+  </div>
+</section>
 
+<!--Featured products carousel (Swiper)-->
+<section class="section" id="featured">
+  <div class="section-head">
+    <h2 class="section-title">Featured Gear</h2>
+    <p class="section-sub">Rotating picks from the floor. Drag, swipe or use the arrow keys.</p>
+  </div>
 
+  <div class="carousel-section">
+    <div class="swiper" id="featured-swiper">
+      <div class="swiper-wrapper">
 
+        <div class="swiper-slide">
+          <article class="card">
+            <img src="assets/cyber.jpeg" alt="Cyberpunk 2077 key art" loading="lazy" width="300" height="180">
+            <div class="card-body">
+              <span class="badge badge--hot">Bestseller</span>
+              <h3 class="card-title">Cyberpunk 2077</h3>
+              <p class="card-text">Night City waits for no one. Grab the full game and start your ascent.</p>
+              <div class="card-meta">
+                <span class="price">KSh 4,500</span>
+                <span class="price-was">KSh 6,200</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
 
+        <div class="swiper-slide">
+          <article class="card">
+            <img src="assets/cyberpunk.jpeg" alt="Cyberpunk 2077 Collector's Edition box art" loading="lazy" width="300" height="180">
+            <div class="card-body">
+              <span class="badge badge--new">New In</span>
+              <h3 class="card-title">Cyberpunk Collector's Edition</h3>
+              <p class="card-text">Steelbook, art book and soundtrack bundled with the base game.</p>
+              <div class="card-meta">
+                <span class="price">KSh 12,900</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
 
+        <div class="swiper-slide">
+          <article class="card">
+            <img src="assets/gta 5.jpeg" alt="Grand Theft Auto V key art" loading="lazy" width="300" height="180">
+            <div class="card-body">
+              <span class="badge badge--sale">On Sale</span>
+              <h3 class="card-title">GTA V</h3>
+              <p class="card-text">Three protagonists, one sprawling city, endless chaos.</p>
+              <div class="card-meta">
+                <span class="price">KSh 2,800</span>
+                <span class="price-was">KSh 3,900</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
 
+        <div class="swiper-slide">
+          <article class="card">
+            <img src="assets/legion tablet.jpeg" alt="Legion gaming tablet handheld console" loading="lazy" width="300" height="180">
+            <div class="card-body">
+              <h3 class="card-title">Legion Gaming Tablet</h3>
+              <p class="card-text">Console-class handheld with a high refresh rate display.</p>
+              <div class="card-meta">
+                <span class="price">KSh 89,000</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
 
+        <div class="swiper-slide">
+          <article class="card">
+            <img src="assets/iphone.jpeg" alt="iPhone on a dark surface" loading="lazy" width="300" height="180">
+            <div class="card-body">
+              <h3 class="card-title">iPhone</h3>
+              <p class="card-text">Mobile gaming that keeps up with your library.</p>
+              <div class="card-meta">
+                <span class="price">KSh 145,000</span>
+              </div>
+              <button class="btn btn--primary btn--block" type="button">Add to Cart</button>
+            </div>
+          </article>
+        </div>
 
+      </div>
 
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</section>
 
+<!--Social proof-->
+<section aria-label="Store statistics">
+  <div class="proof stagger">
+    <div class="proof__item">
+      <span class="proof__num">12,400+</span>
+      <span class="proof__label">Keys Delivered</span>
+    </div>
+    <div class="proof__item">
+      <span class="proof__num">4.8/5</span>
+      <span class="proof__label">Buyer Rating</span>
+    </div>
+    <div class="proof__item">
+      <span class="proof__num">&lt; 5 min</span>
+      <span class="proof__label">Median Delivery</span>
+    </div>
+    <div class="proof__item">
+      <span class="proof__num">38</span>
+      <span class="proof__label">Countries Served</span>
+    </div>
+  </div>
+</section>
 
+<!--Closing CTA-->
+<section class="section" id="get-started">
+  <div class="cta">
+    <h2>Ready to jack in?</h2>
+    <p>Browse the full catalogue or talk to a human — support runs 08:00 to 22:00 EAT, seven days a week.</p>
+    <div class="cta__actions">
+      <a class="btn btn--primary" href="#featured">Browse the Shop</a>
+      <a class="btn btn--ghost" href="mailto:hello@gamershub.example">Contact Support</a>
+    </div>
+  </div>
+</section>
 
+</main>
 
+<footer class="site-footer">
+  <p>&copy; 2026 Gamers Hub Store. All product names and artwork belong to their respective owners.</p>
+</footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="home.js"></script>
+<script src="home.js" type="module"></script>
 </body>
 </html>

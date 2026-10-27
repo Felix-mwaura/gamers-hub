@@ -1,12 +1,40 @@
-let currentIndex = 0;
+// Swiper is installed via npm (see package.json). We import the prebuilt ESM
+// bundle with a relative path so the site works with no bundler/build step —
+// just serve the folder over HTTP.
+import Swiper from './node_modules/swiper/swiper-bundle.mjs';
 
-function showNextSlide() {
-    const slides = document.querySelector('.slides');
-    currentIndex = (currentIndex + 1) % 3; // 3 images in total
-    slides.style.transform = `translateX(-${currentIndex * 600}px)`;
-}
+/* Honour the OS-level reduced-motion preference: skip the decorative
+   typing animation and render the final text immediately. */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+/* Featured products carousel */
+const featuredSwiper = new Swiper('#featured-swiper', {
+    loop: true,
+    grabCursor: true,
+    keyboard: { enabled: true },
+    slidesPerView: 1,
+    spaceBetween: 24,
+    autoplay: prefersReducedMotion ? false : {
+        delay: 3000, // change slide every 3 seconds
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+    },
+    pagination: {
+        el: '#featured-swiper .swiper-pagination',
+        clickable: true
+    },
+    navigation: {
+        nextEl: '#featured-swiper .swiper-button-next',
+        prevEl: '#featured-swiper .swiper-button-prev'
+    },
+    breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
+});
+
+/* Keep a handle around for debugging in the console */
+window.featuredSwiper = featuredSwiper;
 
 //Function for typewriter
 const text = "In a world owned by data, rebellion begins with a single line of corrupted code.Dive into the world of cyberpunk2077 gameplay and experience an asthetic feel"
@@ -17,9 +45,11 @@ let isDeleting = false;
 const el = document.getElementById("type-text");
 
 function typeEffect() {
+  if (!el) return; // guard: element may not exist on other pages
+
   if (!isDeleting && i <= text.length) {
     el.innerHTML = text.substring(0, i);
-    i++;
+    i++
     setTimeout(typeEffect, typingSpeed);
   } else if (isDeleting && i >= 0) {
     el.innerHTML = text.substring(0, i);
@@ -34,12 +64,18 @@ const typingSpeed = 150;
 const erasingSpeed = 100;
 
 
-typeEffect();
+if (prefersReducedMotion) {
+  // Render the final state immediately instead of animating.
+  if (el) el.innerHTML = text;
+} else {
+  typeEffect();
+}
 
 //other type writer
 function typeWriter(elementId, text, speed = 100) {
   let i = 0;
   const el = document.getElementById(elementId);
+  if (!el) return; // guard: element may not exist on other pages
 
   function type() {
     if (i < text.length) {
@@ -52,6 +88,13 @@ function typeWriter(elementId, text, speed = 100) {
   type();
 }
 
-// Apply typewriter to multiple elements
-typeWriter("type-header", "Welcome to Gamers Hub Store", 200);
-
+// Apply typewriter to multiple elements.
+// The h1 carries an aria-label with the same copy, so assistive tech gets the
+// full heading without waiting for the effect to finish.
+const headerText = "Welcome to Gamers Hub Store";
+if (prefersReducedMotion) {
+  const headerEl = document.getElementById("type-header");
+  if (headerEl) headerEl.textContent = headerText;
+} else {
+  typeWriter("type-header", headerText, 200);
+}
